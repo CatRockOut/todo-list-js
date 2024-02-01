@@ -24,6 +24,7 @@ li {
     margin: 0 auto;
     border: 1px solid #000;
     background-color: #fff;
+    border-radius: 15px;
 }
 
 
@@ -34,7 +35,7 @@ header {
 }
 
 h1 {
-    width: 100%;
+    max-width: 100%;
     margin: 27px 0 27px;
     font-weight: 700;
 }
@@ -54,8 +55,7 @@ h1 span:last-child {
     flex-direction: column;
     color: #FFF;
     background-color: #FF4F00;
-    width: 38px;
-    height: 31px;
+    max-width: 38px;
 }
 
 
@@ -65,12 +65,12 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    min-width: 100%;
 }
 
 /* Input for creating notes */
 .items-creation {
-    width: 83%;
+    min-width: 83%;
     display: flex;
     justify-content: center;
     position: relative;
@@ -78,8 +78,7 @@ main {
 }
 
 .input-creation {
-    width: 100%;
-    height: 62px;
+    min-width: 100%;
     border: 1px solid #D2D2D2;
     border-radius: 30px;
     background-color: #F0F5F8;
@@ -89,19 +88,13 @@ main {
     line-height: calc(24 / 35);
     letter-spacing: .48px;
     outline: none;
-    padding: 15px 30px;
+    padding: 16px 30px;
 }
 
-.submit-creation {
-    width: 33%;
-    height: 62px;
-    color: #FFF;
-    text-align: center;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: calc(24 / 44);
-    letter-spacing: .48px;
+.submit-creation,
+.submit-creation-red {
+    min-width: 33%;
+    padding: 21px 0;
     background-color: #00C55A;
     border: 1px solid #00C55A;
     border-radius: 30px;
@@ -110,9 +103,18 @@ main {
     cursor: pointer;
 }
 
+.submit-creation:hover,
+.submit-creation-red:hover {
+    box-shadow: inset -1px 0 10px 0 #000;
+	transition: .3s ease;
+}
+
 .submit-creation-red {
-    width: 33%;
-    height: 62px;
+    background-color: #FF3D00;
+    border: 1px solid #FF3D00;
+}
+
+.submit-creation__save {
     color: #FFF;
     text-align: center;
     font-size: 24px;
@@ -120,17 +122,16 @@ main {
     font-weight: 400;
     line-height: calc(24 / 44);
     letter-spacing: .48px;
-    background-color: #F00;
-    border: 1px solid #F00;
-    border-radius: 30px;
-    position: absolute;
-    transform: translate(102%, 0);
-    cursor: pointer;
 }
+
+.submit-creation__save::before {
+    content: attr(data-text);
+}
+
 
 /* TODO-list */
 .todo-list {
-    width: 83%;
+    min-width: 83%;
     margin-bottom: 42px;
 }
 
@@ -146,7 +147,7 @@ main {
     line-height: calc(24 / 35);
     letter-spacing: .48px;
     outline: none;
-    padding: 15px 30px;
+    padding: 15px 35px;
     margin-bottom: 9px;
 }
 
@@ -158,7 +159,6 @@ main {
 .todo-list_buttons {
     display: flex;
     justify-content: space-between;
-    width: 20%;
 }
 
 .save,
@@ -169,8 +169,8 @@ main {
     background-position: center;
     background-repeat: no-repeat;
     border-radius: 10px;
-    width: 62px;
-    height: 62px;
+    min-width: 62px;
+    min-height: 62px;
     cursor: pointer;
     border: none;
 }
@@ -178,6 +178,13 @@ main {
 .save {
     background-image: url(../img/safe.svg);
     background-color: #f00;
+    margin-right: 5px;
+}
+
+.save:hover,
+.delete:hover {
+    box-shadow: inset 0 0 5px 0 #000;
+	transition: .3s ease;
 }
 
 .save-success {
@@ -193,16 +200,44 @@ main {
     background-image: url(../img/delete-red.svg);
 }
 
-.clean-items{
+.clean-items,
+.clean-items-red {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
     background-image: url(../img/clean-items.svg);
+    background-repeat: no-repeat;
     background-color: #fff;
+    background-position: top 20% center;
     border: none;
-    width: 104px;
-    height: 57px;
-    margin-bottom: 76px;
+    padding: 25px 10px;
+    margin-bottom: 50px;
     cursor: pointer;
 }
 
-.clean-items:hover {
+.clean-items-red {
     background-image: url(../img/clean-items-red.svg);
+}
+
+.clean-items:hover,
+.clean-items-red:hover {
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 #000;
+	transition: .3s ease;
+} 
+
+.clean-items span,
+.clean-items-red span {
+    color: #989898;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: calc(16 / 29);
+    letter-spacing: .32px;
+    text-transform: uppercase;
+    padding-top: 20px;
+}
+
+.clean-items-red span {
+    color: #F00;
 }
